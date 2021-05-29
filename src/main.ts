@@ -1,4 +1,4 @@
-import {readdirSync, lstatSync, existsSync} from 'fs';
+import {readdirSync, lstatSync, statSync, existsSync} from 'fs';
 import {join} from 'path';
 
 import express, {Request, Response} from 'express';
@@ -16,7 +16,8 @@ app.use(express.static(resourcesDirectory));
 interface Element {
     path: string;
     name: string;
-    type: 'file'|'directory'
+    type: 'file'|'directory',
+    size: number
 }
 
 const renderFilesList = (req: Request, res: Response) => {
@@ -28,14 +29,16 @@ const renderFilesList = (req: Request, res: Response) => {
     if (existsSync(currentResourceDirectory)) {
         const elementNames = readdirSync(currentResourceDirectory).filter(name => !name.startsWith('.'));
         elements = elementNames.map(name => {
+            const currentPath = join(currentResourceDirectory, name);
             const element = {
                 path: join(path, name),
                 name,
-                type: 'file'
+                type: 'directory'
             } as Element;
 
-            if (lstatSync(join(currentResourceDirectory, name)).isDirectory()) {
-                element.type = 'directory';
+            if (lstatSync(currentPath).isFile()) {
+                element.type = 'file';
+                element.size = statSync(currentPath).size;
             }
             return element;
         });
