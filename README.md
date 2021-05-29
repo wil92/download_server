@@ -1,3 +1,5 @@
+![build](https://github.com/wil92/download_server/actions/workflows/node.js.yml/badge.svg?branch=master)
+
 # Download server
 
 ## Description
