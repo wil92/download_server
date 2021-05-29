@@ -3,6 +3,8 @@ export const ErrorPage = `
 <html>
 <head>
     <title>Download web</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
     <style>
         .container {
             max-width: 50%;
