@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "ts-node src/main.ts",
-    "dev": "nodemon --watch \"src/**\" --exec \"ts-node src/main.ts\"",
+    "dev": "nodemon --watch \"src/**\" --ext \"ts\" --exec \"ts-node src/main.ts\"",
     "build": "webpack"
   },
   "repository": {
