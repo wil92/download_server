@@ -2,9 +2,10 @@
   "name": "download_server",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "ts-node main.ts",
+    "start": "ts-node src/main.ts",
+    "dev": "nodemon --watch \"src/**\" --exec \"ts-node src/main.ts\"",
     "build": "webpack"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "@types/ejs": "^3.0.6",
     "@types/express": "^4.17.12",
     "@types/node": "^15.6.1",
+    "nodemon": "^2.0.7",
     "ts-loader": "^9.2.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2",

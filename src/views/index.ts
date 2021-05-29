@@ -3,6 +3,12 @@ export const indexPage = `
 <html>
 <head>
     <title>Download web</title>
+    <style>
+        body {
+            background-color: #2d2d2d;
+            color: #dfe6e5;
+        }
+    </style>
 </head>
 <body>
     <h1>Files</h1>

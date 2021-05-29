@@ -6,7 +6,7 @@ module.exports = {
     mode: 'production',
 
     // entry files
-    entry: './main.ts',
+    entry: './src/main.ts',
 
     target: 'node',
 

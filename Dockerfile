@@ -6,8 +6,7 @@ RUN mkdir /resources
 ENV RESOURCES="/resources"
 
 COPY public ./public
-COPY views ./views
-COPY main.ts ./main.ts
+COPY src ./src
 COPY tsconfig.json ./tsconfig.json
 COPY webpack.config.js ./webpack.config.js
 COPY package*.json ./
