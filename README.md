@@ -4,6 +4,16 @@
 
 Minimalistic server for share files from a specific directory.
 
+Application example:
+![](./extra/download-presentation.GIF)
+
+**Why should I use this application?**
+
+- After compiled the total size of the script is only **0.59MB**
+- TypeScript is used to develop the application (Object oriented)
+- The setup with docker is already done (half of the work is done for deployment)
+- Change/Modify style is as simple as modify the views
+
 ## Use locally
 
 ```shell
