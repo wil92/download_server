@@ -5,14 +5,14 @@ WORKDIR /app
 RUN mkdir /resources
 ENV RESOURCES="/resources"
 
-COPY package*.json ./
-RUN npm install
-
 COPY public ./public
 COPY views ./views
 COPY main.ts ./main.ts
 COPY tsconfig.json ./tsconfig.json
 COPY webpack.config.js ./webpack.config.js
+COPY package*.json ./
+
+RUN npm install
 RUN npm run build
 
 RUN mv ./dist/main.js /main.js
