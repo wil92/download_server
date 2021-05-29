@@ -1,0 +1,12 @@
+# Files to serve
+public/*
+!public/.gitkeep
+
+# build files
+dist
+
+# ide files
+.idea
+
+# dependencies
+node_modules
