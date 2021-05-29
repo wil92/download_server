@@ -10,3 +10,6 @@ dist
 
 # dependencies
 node_modules
+
+# environment files
+.env

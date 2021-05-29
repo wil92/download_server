@@ -31,6 +31,8 @@ Before start docker the following env variables are needed:
 - `DIRECTORY_TO_SHARE`: the complete path to the directory to be share.
     - exam: `DIRECTORY_TO_SHARE=/home/app/folder/` 
 
+> NOTE: The easy way to setup the environment variables is to create the .env file
+
 ### start docker container
 ```shell
 docker-compose up -d --build
