@@ -8,6 +8,7 @@ export const indexPage = `
     <style>
         .container {
             max-width: 50%;
+            width: 50%;
         }
         @media screen and (min-width: 1441px) {
             .container {
@@ -53,7 +54,6 @@ export const indexPage = `
             text-decoration: underline;
         }
         .container {
-            width: 80%;
             padding: 20px;
             
             background-color: #2d2d2d;
