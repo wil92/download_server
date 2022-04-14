@@ -4,7 +4,7 @@ export const indexPage = `
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%= baseURL %>">
+    <base href="<%= baseUrl %>">
     <title>Download web</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
