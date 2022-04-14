@@ -10,6 +10,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 const resourcesDirectory = process.env.RESOURCES || './public';
+const baseUrl = process.env.BASE_URL || '/';
 
 app.use(express.static(resourcesDirectory));
 
@@ -27,7 +28,7 @@ const renderFilesList = (req: Request, res: Response) => {
     let parentDirectory = join(path, '..');
 
     if (existsSync(currentResourceDirectory)) {
-        const elementNames = readdirSync(currentResourceDirectory).filter(name => !name.startsWith('.'));
+        const elementNames = readdirSync(currentResourceDirectory).filter((name: string) => !name.startsWith('.'));
         elements = elementNames.map(name => {
             const currentPath = join(currentResourceDirectory, name);
             const element = {
@@ -48,6 +49,7 @@ const renderFilesList = (req: Request, res: Response) => {
     }
 
     res.send(ejs.render(indexPage, {
+        baseUrl,
         elements,
         isRoot: path === '',
         parentDirectory: parentDirectory === '.' ? '' : parentDirectory
