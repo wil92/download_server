@@ -75,12 +75,12 @@ export const indexPage = `
         <p>Files</p>
         <table class="table">
         <% if (!isRoot) { %>
-        <tr><td><a href="/<%= parentDirectory %>" class="extended-a">...</a></td></tr>
+        <tr><td><a href="<%= parentDirectory %>" class="extended-a">...</a></td></tr>
         <% } %>
         <% elements.forEach(function(element){ %>
             <tr>
                 <td>
-                <a href="/<%= element.path %>"
+                <a href="<%= element.path %>"
                    class="<%= element.type === 'directory' ? 'directory' : '' %> extended-a">
                 <%= element.name + (element.type === 'directory' ? '/' : '') %>
                 </a></td>
