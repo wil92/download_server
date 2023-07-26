@@ -22,6 +22,9 @@ Minimalistic server for sharing files from a specific directory.
 ```shell
 npm install
 RESOURCES=./public/ PORT=3001 npm start
+
+# start with user/password (optional)
+D_USERNAME=user D_PASSWORD=pass RESOURCES=./public/ PORT=3001 npm start
 ```
 
 ## Build
@@ -31,6 +34,9 @@ npm run build
 
 # start built project
 RESOURCES=./public/ PORT=3001 node ./dist/main.js
+
+# start with user/password (optional)
+D_USERNAME=user D_PASSWORD=pass RESOURCES=./public/ PORT=3001 node ./dist/main.js
 ```
 
 ## Use with docker-compose
@@ -43,6 +49,8 @@ Before start docker the following environment variables are needed:
     - exam: `SERVER_PORT=7852`
 - `DIRECTORY_TO_SHARE`: the complete path to the directory to be shared.
     - exam: `DIRECTORY_TO_SHARE=/home/app/folder/` 
+- `D_USERNAME` *(optional)*: the username if you want to add security.
+- `D_PASSWORD` *(optional)*: the password if you want to add security.
 
 > NOTE: The easy way to setup the environment variables is to create the .env file
 

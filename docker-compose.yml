@@ -9,3 +9,6 @@ services:
       - $DIRECTORY_TO_SHARE:/resources
     ports:
       - "127.0.0.1:${SERVER_PORT}:3000"
+    environment:
+      - D_USERNAME=$D_USERNAME
+      - D_PASSWORD=$D_PASSWORD

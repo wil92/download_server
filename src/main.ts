@@ -11,13 +11,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 const resourcesDirectory = process.env.RESOURCES || './public';
 const baseUrl = process.env.BASE_URL || '/';
+const username = process.env.D_USERNAME;
+const password = process.env.D_PASSWORD;
 
 app.use(express.static(resourcesDirectory));
 
 interface Element {
     path: string;
     name: string;
-    type: 'file'|'directory',
+    type: 'file' | 'directory',
     size: number
 }
 
@@ -56,6 +58,29 @@ const renderFilesList = (req: Request, res: Response) => {
     }));
 }
 
+// check for username/password
+app.use((req, res, next) => {
+    if (!!username && !!password) {
+        const authHeader = req.header("Authorization");
+        let requestAuth = true;
+        if (authHeader) {
+            // validate user/pass
+            const auth = new Buffer(authHeader.replace("Basic ", ""), 'base64').toString('utf8');
+            const userpass = auth.split(":");
+
+            if (userpass[0] === username && userpass[1] === password) {
+                requestAuth = false;
+            }
+        }
+        if (requestAuth) {
+            // request authentication
+            res.status(401);
+            res.setHeader("WWW-Authenticate", "Basic realm=\"Transmission\", charset=\"UTF-8\"");
+            return res.send("");
+        }
+    }
+    next();
+});
 app.get('/:path(*)', renderFilesList);
 
 app.listen(port, () => {
