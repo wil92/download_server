@@ -12,6 +12,8 @@ export const indexPage = `
         .container {
             max-width: 50%;
             width: 50%;
+            display: flex;
+            flex-direction: column;
         }
         @media screen and (min-width: 1441px) {
             .container {
@@ -67,6 +69,13 @@ export const indexPage = `
         }
         .table {
             width: 100%;
+            max-width: 100%;
+        }
+        .table tbody {
+            max-width: 100%;
+        }
+        .table tr {
+            max-width: 100%;
         }
     </style>
 </head>
@@ -74,21 +83,55 @@ export const indexPage = `
     <div class="container">
         <p>Files</p>
         <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>size</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
         <% if (!isRoot) { %>
         <tr><td><a href="<%= parentDirectory %>" class="extended-a">...</a></td></tr>
         <% } %>
         <% elements.forEach(function(element){ %>
             <tr>
-                <td>
+                <td style="max-width: 40%">
                 <a href="<%= element.path %>"
+                   title="<%= element.name + (element.type === 'directory' ? '/' : '') %>"
+                   style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden"
                    class="<%= element.type === 'directory' ? 'directory' : '' %> extended-a">
                 <%= element.name + (element.type === 'directory' ? '/' : '') %>
                 </a></td>
                 <td><%= element.type === 'file' ? element.size + 'B' : '-' %></td>
+                <td><button onclick="deleteElement('<%= element.path %>')">x</button></td>
             </tr>
         <% }); %>
+        </tbody>
         </table>
     </div>
+    <script type="application/javascript">
+        function deleteElement(path) {
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+              if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                switch (this.status) {
+                    case 200:
+                        // refresh the page
+                        location.reload();
+                        break;
+                    default:
+                        // show error
+                        break;
+                }
+              }
+            };
+            xhttp.open('DELETE', 'delete_element/' + path, true);
+            // xhttp.setRequestHeader('Authentication', 'XMLHttpRequest');
+            xhttp.send();
+        }
+    </script>
 </body>
 </html>
 `;
