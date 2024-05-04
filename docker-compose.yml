@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   server:
-    image: simple-download-server:latest
+    image: ggjnez92/simple-download-server:latest
     restart: always
     volumes:
       - $DIRECTORY_TO_SHARE:/resources

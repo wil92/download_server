@@ -1,16 +1,10 @@
-FROM node:14.16-alpine3.11
+FROM node:20-alpine3.19
 
 WORKDIR /app
 
 RUN mkdir /resources
 ENV RESOURCES="/resources"
 
-COPY src ./src
-COPY tsconfig.json webpack.config.js package*.json ./
+COPY dist/main.js ./
 
-RUN npm install && npm run build
-
-RUN mv ./dist/main.js /main.js
-RUN rm -rf /app/*
-
-CMD ["node", "/main.js"]
+CMD ["node", "/app/main.js"]

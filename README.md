@@ -66,12 +66,12 @@ docker-compose up -d --build
 docker build -t simple-download-server .
 
 # set this version as latest
+docker image tag simple-download-server ggjnez92/simple-download-server:1.1.0
 docker image tag simple-download-server ggjnez92/simple-download-server:latest
-docker image tag simple-download-server ggjnez92/simple-download-server:1.0.0
 
 # push image to docker hub
-docker image push ggjnez92/simple-download-server:1.0.0
-#docker image push ggjnez92/simple-download-server:latest # possible not needed
+docker image push ggjnez92/simple-download-server:1.1.0
+docker image push ggjnez92/simple-download-server:latest
 ```
 
 ## Technologies used
