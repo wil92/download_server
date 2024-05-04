@@ -43,3 +43,13 @@ services:
       - D_USERNAME=admin
       - D_PASSWORD=admin
 ```
+
+## Parameters
+
+| Parameter       | Description                           | Default |
+|-----------------|---------------------------------------|---------|
+| D_USERNAME      | Username for the basic authentication | ''      |
+| D_PASSWORD      | Password for the basic authentication | ''      |
+| D_ALLOW_REMOVE  | Allow remove files                    | false   |
+
+> Note: Empty values for `D_USERNAME` and `D_PASSWORD` will disable the basic authentication.

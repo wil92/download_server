@@ -104,7 +104,9 @@ export const indexPage = `
                 <%= element.name + (element.type === 'directory' ? '/' : '') %>
                 </a></td>
                 <td><%= element.type === 'file' ? element.size + 'B' : '-' %></td>
+                <% if (allowRemove) { %>
                 <td><button onclick="deleteElement('<%= element.path %>')">x</button></td>
+                <% } %>
             </tr>
         <% }); %>
         </tbody>

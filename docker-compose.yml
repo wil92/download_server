@@ -2,7 +2,10 @@ version: "3.3"
 
 services:
   server:
-    image: ggjnez92/simple-download-server:latest
+#    image: ggjnez92/simple-download-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     volumes:
       - $DIRECTORY_TO_SHARE:/resources
@@ -11,3 +14,4 @@ services:
     environment:
       - D_USERNAME=$D_USERNAME
       - D_PASSWORD=$D_PASSWORD
+      - D_ALLOW_REMOVE=true

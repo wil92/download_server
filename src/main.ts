@@ -1,4 +1,4 @@
-import {readdirSync, lstatSync, statSync, existsSync, unlinkSync, rmSync} from 'fs';
+import {readdirSync, lstatSync, statSync, existsSync, rmSync} from 'fs';
 import {join} from 'path';
 
 import express, {NextFunction, Request, Response} from 'express';
@@ -13,6 +13,7 @@ const resourcesDirectory = process.env.RESOURCES || './resources';
 const baseUrl = process.env.BASE_URL || '/';
 const username = process.env.D_USERNAME;
 const password = process.env.D_PASSWORD;
+const allowRemove = process.env.D_ALLOW_REMOVE === 'true';
 
 app.use(express.static(resourcesDirectory));
 
@@ -53,6 +54,7 @@ const renderFilesList = (req: Request, res: Response) => {
     res.send(ejs.render(indexPage, {
         baseUrl,
         elements,
+        allowRemove,
         isRoot: path === '',
         parentDirectory: parentDirectory === '.' ? '' : parentDirectory
     }));
@@ -84,12 +86,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.get('/:path(*)', renderFilesList);
 
 app.delete('/delete_element/:path(*)', (req: Request, res: Response) => {
+    if (!allowRemove) {
+        // fail if not allowed
+        res.status(403);
+        return res.send({error: 'Removing files is not allowed.'});
+    }
+
     const {path} = req.params;
     const fullPath = join(resourcesDirectory, path);
 
     if (!existsSync(fullPath)) {
         res.status(404);
-        res.send({error: 'File to remove didn\'t exist.'});
+        return res.send({error: 'File to remove didn\'t exist.'});
     }
 
     rmSync(fullPath, {force: true, recursive: true, maxRetries: 2, retryDelay: 10});
