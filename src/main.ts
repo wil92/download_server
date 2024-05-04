@@ -9,7 +9,7 @@ import {indexPage, ErrorPage} from './views';
 const app = express();
 
 const port = process.env.PORT || 3000;
-const resourcesDirectory = process.env.RESOURCES || './public';
+const resourcesDirectory = process.env.RESOURCES || './resources';
 const baseUrl = process.env.BASE_URL || '/';
 const username = process.env.D_USERNAME;
 const password = process.env.D_PASSWORD;

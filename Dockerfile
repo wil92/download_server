@@ -5,14 +5,10 @@ WORKDIR /app
 RUN mkdir /resources
 ENV RESOURCES="/resources"
 
-COPY public ./public
 COPY src ./src
-COPY tsconfig.json ./tsconfig.json
-COPY webpack.config.js ./webpack.config.js
-COPY package*.json ./
+COPY tsconfig.json webpack.config.js package*.json ./
 
-RUN npm install
-RUN npm run build
+RUN npm install && npm run build
 
 RUN mv ./dist/main.js /main.js
 RUN rm -rf /app/*
