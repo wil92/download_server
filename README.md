@@ -1,7 +1,7 @@
 ![build](https://github.com/wil92/download_server/actions/workflows/node.js.yml/badge.svg?branch=master)
 ![guille twitter](https://img.shields.io/twitter/url?label=ggjnez92&logo=twitter&url=https%3A%2F%2Ftwitter.com%2Fggjnez92)
 
-# Download server
+# Simple Download Server
 
 ## Description
 
