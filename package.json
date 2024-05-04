@@ -1,5 +1,5 @@
 {
-  "name": "download_server",
+  "name": "simple_download_server",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
