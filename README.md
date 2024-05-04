@@ -74,6 +74,10 @@ docker image push ggjnez92/simple-download-server:1.2.0
 docker image push ggjnez92/simple-download-server:latest
 ```
 
+## ToDo
+
+- [ ] Add integration tests
+
 ## Technologies used
 
 - [TypeScript](https://www.typescriptlang.org/)
