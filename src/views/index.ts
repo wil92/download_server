@@ -68,49 +68,67 @@ export const indexPage = `
             color: #729ca8;
         }
         .table {
+            display: block;
             width: 100%;
             max-width: 100%;
         }
-        .table tbody {
+        .table tbody,thead {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
             max-width: 100%;
         }
         .table tr {
+            width: 100%;
             max-width: 100%;
+            display: flex;
+            flex-direction: row;
+            
+            td, th {
+                overflow: hidden;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <p>Files</p>
-        <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>size</th>
-                <th>action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <% if (!isRoot) { %>
-        <tr><td><a href="<%= parentDirectory %>" class="extended-a">...</a></td></tr>
-        <% } %>
-        <% elements.forEach(function(element){ %>
-            <tr>
-                <td style="max-width: 40%">
-                <a href="<%= element.path %>"
-                   title="<%= element.name + (element.type === 'directory' ? '/' : '') %>"
-                   style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden"
-                   class="<%= element.type === 'directory' ? 'directory' : '' %> extended-a">
-                <%= element.name + (element.type === 'directory' ? '/' : '') %>
-                </a></td>
-                <td><%= element.type === 'file' ? element.size + 'B' : '-' %></td>
-                <% if (allowRemove) { %>
-                <td><button onclick="deleteElement('<%= element.path %>')">x</button></td>
-                <% } %>
-            </tr>
-        <% }); %>
-        </tbody>
-        </table>
+        <div style="display: flex; flex-direction: column;max-width: 100%">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 70%"></th>
+                    <th style="width: 15%">size</th>
+                    <th style="width: 15%">action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% if (!isRoot) { %>
+            <tr><td><a href="<%= parentDirectory %>" class="extended-a">...</a></td></tr>
+            <% } %>
+            <% elements.forEach(function(element){ %>
+                <tr>
+                    <td style="width: 70%">
+                        <a href="<%= element.path %>"
+                           title="<%= element.name + (element.type === 'directory' ? '/' : '') %>"
+                           style="display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden"
+                           class="<%= element.type === 'directory' ? 'directory' : '' %> extended-a">
+                            <%= element.name + (element.type === 'directory' ? '/' : '') %>
+                        </a>
+                    </td>
+                    <td style="width: 15%;text-align: center;">
+                        <%= element.type === 'file' ? element.size + 'B' : '-' %>
+                    </td>
+                    <% if (allowRemove) { %>
+                    <td style="width: 15%;text-align: center;">
+                        <button title="delete" onclick="deleteElement('<%= element.path %>')">x</button>
+                    </td>
+                    <% } %>
+                </tr>
+            <% }); %>
+            </tbody>
+            </table>
+        </div>
     </div>
     <script type="application/javascript">
         function deleteElement(path) {
