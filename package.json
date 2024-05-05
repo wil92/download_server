@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/main.ts",
     "dev": "nodemon --watch \"src/**\" --ext \"ts\" --exec \"ts-node src/main.ts\"",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,14 @@
     "express": "4.19.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-typescript": "^7.24.1",
     "@types/ejs": "3.1.5",
     "@types/express": "4.17.21",
     "@types/node": "20.12.8",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "nodemon": "3.1.0",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
