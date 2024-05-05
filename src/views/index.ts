@@ -117,7 +117,7 @@ export const indexPage = `
                         </a>
                     </td>
                     <td style="width: 15%;text-align: center;">
-                        <%= element.type === 'file' ? element.size + 'B' : '-' %>
+                        <%= element.type === 'file' ? element.size : '-' %>
                     </td>
                     <% if (allowRemove) { %>
                     <td style="width: 15%;text-align: center;">

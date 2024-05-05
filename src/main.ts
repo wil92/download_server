@@ -5,6 +5,7 @@ import express, {NextFunction, Request, Response} from 'express';
 import ejs from 'ejs';
 
 import {indexPage, ErrorPage} from './views';
+import {humanFileSize} from "./utils/human-file-size";
 
 const app = express();
 
@@ -21,7 +22,7 @@ interface Element {
     path: string;
     name: string;
     type: 'file' | 'directory',
-    size: number
+    size: string;
 }
 
 const renderFilesList = (req: Request, res: Response) => {
@@ -42,7 +43,7 @@ const renderFilesList = (req: Request, res: Response) => {
 
             if (lstatSync(currentPath).isFile()) {
                 element.type = 'file';
-                element.size = statSync(currentPath).size;
+                element.size = humanFileSize(statSync(currentPath).size);
             }
             return element;
         });
